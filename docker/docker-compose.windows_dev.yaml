@@ -1,0 +1,22 @@
+services:
+  ros-dev-windows:
+    build:
+      context: ../
+      dockerfile: docker/Dockerfile
+      args:
+        ROS_DISTRO: humble
+    image: ds-crazyflies:dev
+    container_name: ds-crazyflies-dev
+    ipc: host
+    stdin_open: true
+    tty: true
+    environment:
+      - DISPLAY=host.docker.internal:0.0
+      - QT_X11_NO_MITSHM=1
+      - USER=devuser
+      - USERNAME=devuser
+    volumes:
+      - /tmp/.X11-unix:/tmp/.X11-unix:rw
+    working_dir: /ds/ds-crazyflies
+    command: bash
+    privileged: true

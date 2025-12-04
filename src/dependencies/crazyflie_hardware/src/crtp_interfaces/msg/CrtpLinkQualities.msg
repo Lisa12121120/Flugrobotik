@@ -1,0 +1,1 @@
+crtp_interfaces/CrtpLinkQuality[] link_qualities

@@ -1,0 +1,31 @@
+cmake_minimum_required(VERSION 3.10)
+set(CMAKE_CXX_STANDARD 20)
+project(crtp_logic)
+
+add_subdirectory(${CMAKE_CURRENT_LIST_DIR}/../crtp_packer ${CMAKE_CURRENT_BINARY_DIR}/../crtp_packer)
+
+
+include_directories(include)
+add_library(crtp_logic 
+        logic.cpp
+        console_logic.cpp
+        generic_commander_logic.cpp
+        hl_commander_logic.cpp
+        link_layer_logic.cpp
+        localization_logic.cpp
+        logging_logic.cpp)
+
+target_link_libraries(crtp_logic 
+        crtp_packer)
+
+target_include_directories(crtp_logic PUBLIC ${CMAKE_CURRENT_LIST_DIR}/../crtp_packer/include)
+
+
+install(TARGETS crtp_logic
+        EXPORT crtp_logic
+        ARCHIVE DESTINATION lib
+        LIBRARY DESTINATION lib
+        RUNTIME DESTINATION bin)
+
+install(DIRECTORY include/ 
+        DESTINATION include/crtp_logic)

@@ -1,0 +1,5 @@
+uint8 channel 80 # The (radio) channel the crazyflie is on
+uint8 id 231   # The id of the crazyflie
+---
+bool success # True if the call was succesfull
+string msg # If no success this is the reason

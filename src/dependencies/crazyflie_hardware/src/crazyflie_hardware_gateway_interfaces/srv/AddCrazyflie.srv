@@ -1,0 +1,7 @@
+uint8 channel 80 # The (radio) channel the crazyflie is on
+uint8 id 231   # The id of the crazyflie
+geometry_msgs/Point initial_position # The initial_position we expect the crazyflie to be at 
+string type "default"   # The crazyflie type as described by a yaml. e.g tracked, default
+---
+bool success # True if the call was succesfull
+string msg # If no success this is the reason

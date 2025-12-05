@@ -255,7 +255,8 @@ colcon build --symlink-install
 
 Anleitung
 ```
-cd /root/ws
+cd /ds/ds-crazyflies
+rm -rf build install log
 ./build.sh
 source install/setup.bash
 ```

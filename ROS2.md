@@ -44,7 +44,7 @@ float32 yaw
 ## Drohne abheben lassen
 ```
 ros2 topic pub --once /cf0/cmd_position crazyflie_interfaces/msg/Position \
-"{x: 0.0, y: 0.0, z: 0.5, yaw: 0.0}"
+"{x: 2.0, y: 0.0, z: 0.5, yaw: 0.0}"
 ```
 ## manuelles testen der Befehle
 ```

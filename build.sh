@@ -37,7 +37,7 @@ esac
 
 # Build
 if [ -z "$SKIP_PACKAGES" ]; then
-    colcon build
+    colcon build --symlink-install
 else
     colcon build --packages-skip $SKIP_PACKAGES
 fi

@@ -7,8 +7,9 @@ FROM osrf/ros:${ROS_DISTRO}-desktop-full AS base
 ENV ROS_DISTRO=${ROS_DISTRO}
 SHELL ["/bin/bash", "-c"]
 
-RUN apt-get update && apt-get install -y --no-install-recommends ntpdate
-
+RUN apt-get update || true && \
+    apt-get install -y --no-install-recommends ntpdate 
+    # ntpdate ntp.ubuntu.com
 
 # Install some basic packages
 RUN apt-get update && apt-get install -y --no-install-recommends \
@@ -41,6 +42,8 @@ RUN git config --global --add safe.directory /ds/ds-crazyflies
 WORKDIR /ds
 COPY --chown=devuser ./src /ds/ds-crazyflies/src
 COPY --chown=devuser build.sh /ds/ds-crazyflies/
+# Windows macht manche Ordner read-only → Schreibrechte reparieren
+RUN chmod -R u+rw /ds/ds-crazyflies/src
 
 WORKDIR /ds/ds-crazyflies
 RUN source /opt/ros/${ROS_DISTRO}/setup.bash &&\

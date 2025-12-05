@@ -5,7 +5,7 @@ git clone --recurse https://github.com/DynamicSwarms/ds-crazyflies.git
 ```
 ---
 
-## 2. MobaXterm
+## 2. MobaXterm (optional?)
 Install and launch MobaXterm:
 
 https://mobaxterm.mobatek.net/download.html
@@ -26,8 +26,96 @@ git clone https://github.com/DynamicSwarms/crazywebotsworld.git
 ## 5. Welt in Webots öffnen
 ---
 
+## 6. Docker starten
 
-# Änderungen & Fixes für ds-crazyflies (Windows + Docker ohne GPU)
+vorhande Docker Container
+```
+docker ps
+```
+
+```
+docker stop ds-crazyflies-dev
+docker rm ds-crazyflies-dev
+```
+
+### devcontainer starten
+in vs code Extensions 
+- devcontainer 
+- Docker
+
+F1 drücken (oben in der Zeile) Dev Container: Reopen in Container (ggf. without cache)
+
+jetzt dauerts (10 min oder so) (hoffentlich XD)
+
+### Im Container
+
+Workspace bauen oder so
+
+muss man immer machen wenn man eine neue Node schreibt. müsste eigentlich noch einen effzienteren Weg geben
+
+dauert auch lang (10 min oder so)
+
+nicht in dem Terminal das aufgeht, wenn der Container startet (hatt bei mir eine Warnsymbol)
+```
+cd /ds/ds-crazyflies
+rm -rf build install log
+./build.sh
+source install/setup.bash
+```
+
+## ab jetzt in jedem Terminal
+```
+source install/setup.bash
+```
+
+## Drohne registrieren
+```
+ros2 service call /crazyflie_webots_gateway/add_crazyflie \
+  crazyflie_webots_gateway_interfaces/srv/WebotsCrazyflie "{id: 0}"
+```
+
+## nodes starten
+```
+ros2 launch crazyflies framework.launch.py backend:=webots
+```
+
+## Hilfreiche Befehle
+
+### vorhandene topics
+```
+ros2 topic list
+```
+### Nachrichtentyp des Topics rausfinden
+```
+ros2 topic info /cf0/cmd_position
+```
+
+Ausgabe:
+```
+Type: crazyflie_interfaces/msg/Position
+Publisher count: 0
+Subscription count: 1
+```
+### Struktur eines Nachrichtentyps ansehen
+
+```
+ros2 interface show crazyflie_interfaces/msg/Position
+```
+Ausgabe:
+```
+float32 x
+float32 y
+float32 z
+float32 yaw
+```
+### Drohne abheben lassen
+```
+ros2 topic pub --once /cf0/cmd_position crazyflie_interfaces/msg/Position \
+"{x: -2.0, y: 0.0, z: 2.5, yaw: 0.0}"
+```
+
+
+# Änderungen & Fixes für ds-crazyflies (Windows + Docker ohne GPU) (Rest kann man ignorieren)
 
 Diese Datei fasst **alle Schritte, Fehlerbehebungen und Änderungen** zusammen, die notwendig waren, damit `ds-crazyflies` unter **Windows 11 + Docker Desktop (ohne NVIDIA GPU)** lauffähig wird.
 

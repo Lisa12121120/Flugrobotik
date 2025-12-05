@@ -4,4 +4,4 @@ dist/
 
 *.so
 *.egg-info/
-*.whl
+*.whl\!deps/NatNetSDKCrossplatform/lib/libNatNet.so

@@ -1,0 +1,19 @@
+{
+  "name": "ds-crazyflies-dev",
+  "dockerComposeFile": "docker-compose.yml",
+  "service": "ros-dev-windows",
+  "workspaceFolder": "/ds/ds-crazyflies",
+
+  "remoteUser": "devuser",
+
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-vscode.cpptools",
+        "twxs.cmake",
+        "ms-iot.vscode-ros",
+        "ms-azuretools.vscode-docker"
+      ]
+    }
+  }
+}

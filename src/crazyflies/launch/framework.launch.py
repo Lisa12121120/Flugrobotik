@@ -97,6 +97,13 @@ def generate_launch_description():
         name="position_visualization",
     )
 
+    Node(
+        package="crazyflies",
+        executable="dreieck",
+        name="dreieck"
+    )
+
+
     # motion_caputre = Node(
     #     condition=start_hardware,
     #     package="ros_motioncapture",

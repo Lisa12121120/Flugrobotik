@@ -27,6 +27,8 @@ setup(
             "position_visualization = crazyflies.position_visualization:main",
             "crazyflie = crazyflies.crazyflie:main",
             "safeflie = crazyflies.safeflie:main",
+            "dreieck = crazyflies.dreieck:main",
+
         ],
     },
 )
